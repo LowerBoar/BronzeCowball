@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+	public float Speed = 200f;
+
 	private Vector2 movementVector;
 
 	void Start()
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour
     {
 	    if (movementVector != Vector2.zero) {
 		    var rigidbody = GetComponent<Rigidbody2D>();
-		    rigidbody.MovePosition(rigidbody.position + movementVector * Time.fixedDeltaTime);  // TODO Cancels gravity. Should we apply it by ourselves?
-        }
+		    rigidbody.velocity = (movementVector * Speed + new Vector2(0f, -Globals.Gravity)) * Time.fixedDeltaTime;
+	    }
     }
 }
