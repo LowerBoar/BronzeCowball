@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -35,15 +32,19 @@ public class Spawner : MonoBehaviour
 	    var point = Random.Range(2, Partition - 2);
 	    var cellSize = sizeX / Partition;
 
-	    var additionalOffset = 2;   // TODO Additional offset should be based on player size
+	    var additionalOffset = 1.5f;   // TODO Additional offset should be based on player size
 
 	    var cell = Instantiate(FloorCell, holder);
+	    var size = new Vector3(cellSize * point, 1f);
+	    cell.transform.localScale = size;
 	    cell.transform.position =
-		    spawnPoint.transform.position - new Vector3(((float)point / 2 + additionalOffset) * cellSize, 0);
-	    cell.transform.localScale = new Vector3(cellSize * point, 1f);
+		    spawnPoint.transform.position + new Vector3(size.x / 2 + sizeX / 2, 0);
+
+	    var sizeSum = size.x;
 
 	    cell = Instantiate(FloorCell, holder);
-	    cell.transform.position = spawnPoint.transform.position + new Vector3((float)(Partition - point) / 2 * cellSize, 0);
-	    cell.transform.localScale = new Vector3(cellSize * (Partition - point), 1f);
+		size = new Vector3(cellSize * (Partition - point), 1f);
+		cell.transform.localScale = size;
+		cell.transform.position = spawnPoint.transform.position + new Vector3(size.x / 2 + sizeX / 2 + sizeSum + additionalOffset * cellSize, 0);	// TODO Replace this ugly code with something clean
 	}
 }
