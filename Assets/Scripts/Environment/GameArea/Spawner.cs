@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,7 @@ public class Spawner : MonoBehaviour
 	private GameObject spawnPoint;
 	private Transform holder;
 	private float sizeX;
+	private float spawnDelay = 3f;
 
 	void Start()
 	{
@@ -19,12 +21,20 @@ public class Spawner : MonoBehaviour
 		spawnPoint = spawnPointSprite.gameObject;
 		spawnPointSprite.enabled = false;
 
-		InvokeRepeating(nameof(Spawn), 0f, 3f);
+		Spawn();
+		StartCoroutine(SpawnQueue(spawnDelay));
 	}
 
     void Update()
     {
         
+    }
+
+    private IEnumerator SpawnQueue(float waitTime)
+    {
+	    yield return new WaitForSeconds(waitTime);
+	    Spawn();
+	    StartCoroutine(SpawnQueue(Mathf.Max(waitTime - 0.1f, 1.5f)));
     }
 
     private void Spawn()
