@@ -5,6 +5,6 @@ public class Starter : MonoBehaviour
 {
 	public void Awake()
 	{
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));
 	}
 }
