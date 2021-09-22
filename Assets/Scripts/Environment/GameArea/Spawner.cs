@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
 	void Start()
 	{
 		holder = transform.Find("Cells");
-		sizeX = GetComponentInParent<Camera>().orthographicSize * 2;
+		sizeX = GameObject.Find("Border").transform.localScale.x;	// TODO Don't do this at home (and stop doing it in this project)
 		var spawnPointSprite = GetComponentInChildren<SpriteRenderer>();
 
 		spawnPoint = spawnPointSprite.gameObject;
@@ -45,16 +45,16 @@ public class Spawner : MonoBehaviour
 	    var additionalOffset = 1.5f;   // TODO Additional offset should be based on player size
 
 	    var cell = Instantiate(FloorCell, holder);
-	    var size = new Vector3(cellSize * point, 1f);
+	    var size = new Vector3(cellSize * point - additionalOffset * cellSize / 2, 1f);
 	    cell.transform.localScale = size;
 	    cell.transform.position =
-		    spawnPoint.transform.position + new Vector3(size.x / 2 + sizeX / 2, 0);
+		    spawnPoint.transform.position + new Vector3(size.x / 2, 0);
 
 	    var sizeSum = size.x;
 
 	    cell = Instantiate(FloorCell, holder);
-		size = new Vector3(cellSize * (Partition - point), 1f);
+		size = new Vector3(cellSize * (Partition - point) - additionalOffset * cellSize / 2, 1f);
 		cell.transform.localScale = size;
-		cell.transform.position = spawnPoint.transform.position + new Vector3(size.x / 2 + sizeX / 2 + sizeSum + additionalOffset * cellSize, 0);	// TODO Replace this ugly code with something clean
+		cell.transform.position = spawnPoint.transform.position + new Vector3(size.x / 2 + sizeSum + additionalOffset * cellSize, 0);	// TODO Replace this ugly code with something clean
 	}
 }

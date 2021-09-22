@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     {
 	    movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-	    if (camera.WorldToViewportPoint(transform.position).y > 1)
+	    if (camera.WorldToViewportPoint(transform.position).y > 1.2)
 	    {
 		    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.EndScreen));
 		}
