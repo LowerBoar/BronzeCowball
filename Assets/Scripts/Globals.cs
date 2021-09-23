@@ -1,6 +1,6 @@
 public static class Globals
 {
-	public static float Gravity = 9.8f;
+	public static float Gravity = 200f;
 
 	public static int GetSceneIndex(Scenes scene) => (int) scene;
 

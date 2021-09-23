@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-	public float Speed = 200f;
+	public float HorizontalSpeed = 200f;
+	public float VerticalSpeed = 400f;
 
+	private Vector2 Speed;
 	private Vector2 movementVector;
 	private Camera camera;
 
 	void Start()
 	{
 		camera = FindObjectOfType<Camera>();
+		Speed = new Vector2(HorizontalSpeed, VerticalSpeed);
 	}
 
     void Update()
