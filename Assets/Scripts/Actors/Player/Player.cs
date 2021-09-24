@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
 
 	    if (camera.WorldToViewportPoint(transform.position).y > 1.2)
 	    {
-		    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.EndScreen));
+			FindObjectOfType<GameManager>().StopPlaying();
+		    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.EndScreen));	// TODO Maybe this better lie in SceneManager?
 		}
 	}
 
