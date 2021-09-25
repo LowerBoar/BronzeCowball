@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AccelerateedMovement : MonoBehaviour
+public class AcceleratedMovement : MonoBehaviour
 {
 	public float Acceleration = 0.05f;
 	public float StartingSpeed = -0.5f;
