@@ -8,7 +8,8 @@ public static class Globals
 	public enum Scenes
 	{
 		Preload = 0,
-		GameScreen = 1,
-		EndScreen = 2,
+		MainMenu = 1,
+		GameScreen = 2,
+		EndScreen = 3,
 	}
 }

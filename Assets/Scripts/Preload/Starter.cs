@@ -6,6 +6,6 @@ public class Starter : MonoBehaviour
 	public void Awake()
 	{
 		FindObjectOfType<GameManager>().BeginPlaying();
-		SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));
+		SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.MainMenu));
 	}
 }
