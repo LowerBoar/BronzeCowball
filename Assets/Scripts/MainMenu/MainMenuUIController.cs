@@ -13,6 +13,7 @@ public class MainMenuUIController : MonoBehaviour
 
 	private void OnPlayButtonClick()
     {
+	    FindObjectOfType<GameManager>().BeginPlaying();
 	    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));
     }
 }
