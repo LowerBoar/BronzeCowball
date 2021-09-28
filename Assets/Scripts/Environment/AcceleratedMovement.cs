@@ -15,7 +15,7 @@ public class AcceleratedMovement : MonoBehaviour
 
     void Update()
     {
-	    currentSpeed -= Acceleration * Time.deltaTime;
+	    currentSpeed += Acceleration * Time.deltaTime;
     }
 
 	private void FixedUpdate()

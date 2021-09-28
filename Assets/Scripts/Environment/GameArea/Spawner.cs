@@ -5,16 +5,16 @@ using Random = UnityEngine.Random;
 public class Spawner : MonoBehaviour
 {
 	public GameObject FloorCell;
+	public Transform cellHolder;
+
 	private int Partition = 10;
 
 	private GameObject spawnPoint;
-	private Transform holder;
 	private float sizeX;
 	private float spawnDelay = 3f;
 
 	void Start()
 	{
-		holder = transform.Find("Cells");
 		sizeX = GameObject.Find("Border").transform.localScale.x;	// TODO Don't do this at home (and stop doing it in this project)
 		var spawnPointSprite = GetComponentInChildren<SpriteRenderer>();
 
@@ -44,15 +44,17 @@ public class Spawner : MonoBehaviour
 
 	    var additionalOffset = 1.5f;   // TODO Additional offset should be based on player size
 
-	    var cell = Instantiate(FloorCell, holder);
+	    var cell = Instantiate(FloorCell, cellHolder);
+	    cell.transform.parent = cellHolder;
 	    var size = new Vector3(cellSize * point - additionalOffset * cellSize / 2, 1f);
 	    cell.transform.localScale = size;
 	    cell.transform.position =
 		    spawnPoint.transform.position + new Vector3(size.x / 2, 0);
 
 	    var sizeSum = size.x;
-
-	    cell = Instantiate(FloorCell, holder);
+		
+	    cell = Instantiate(FloorCell, cellHolder);
+	    cell.transform.parent = cellHolder;
 		size = new Vector3(cellSize * (Partition - point) - additionalOffset * cellSize / 2, 1f);
 		cell.transform.localScale = size;
 		cell.transform.position = spawnPoint.transform.position + new Vector3(size.x / 2 + sizeSum + additionalOffset * cellSize, 0);	// TODO Replace this ugly code with something clean
