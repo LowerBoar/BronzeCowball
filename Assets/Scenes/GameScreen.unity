@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8792638547915758810, guid: 696abd311bc7078409b4e417ccc141fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8998656802327690373, guid: 696abd311bc7078409b4e417ccc141fd, type: 3}
       propertyPath: orthographic size
       value: 5
@@ -347,6 +351,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0206ba9cfd4a7e74eb4d09e6f8f68719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &926408879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3448268256796824260, guid: 696abd311bc7078409b4e417ccc141fd, type: 3}
+  m_PrefabInstance: {fileID: 63259927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &926408880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926408879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0054d89bf6aa84ca1e1ef7d6b455d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
+  RotationTimeInterval: 1
+  RotationStep: 1
 --- !u!1 &1168306508
 GameObject:
   m_ObjectHideFlags: 0
