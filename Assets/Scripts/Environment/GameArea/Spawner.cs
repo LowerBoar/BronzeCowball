@@ -25,16 +25,13 @@ public class Spawner : MonoBehaviour
 		StartCoroutine(SpawnQueue(spawnDelay));
 	}
 
-    void Update()
+	private IEnumerator SpawnQueue(float waitTime)
     {
-        
-    }
-
-    private IEnumerator SpawnQueue(float waitTime)
-    {
-	    yield return new WaitForSeconds(waitTime);
-	    Spawn();
-	    StartCoroutine(SpawnQueue(Mathf.Max(waitTime - 0.1f, 1.5f)));
+	    while (true) {
+		    yield return new WaitForSeconds(waitTime);
+		    waitTime = Mathf.Max(waitTime - 0.1f, 1.5f);
+		    Spawn();
+	    }
     }
 
     private void Spawn()
@@ -52,11 +49,11 @@ public class Spawner : MonoBehaviour
 		    spawnPoint.transform.position + new Vector3(size.x / 2, 0);
 
 	    var sizeSum = size.x;
-		
+
 	    cell = Instantiate(FloorCell, cellHolder);
 	    cell.transform.parent = cellHolder;
 		size = new Vector3(cellSize * (Partition - point) - additionalOffset * cellSize / 2, 1f);
 		cell.transform.localScale = size;
 		cell.transform.position = spawnPoint.transform.position + new Vector3(size.x / 2 + sizeSum + additionalOffset * cellSize, 0);	// TODO Replace this ugly code with something clean
-	}
+    }
 }
