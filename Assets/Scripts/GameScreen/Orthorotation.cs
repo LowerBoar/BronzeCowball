@@ -25,6 +25,7 @@ public class Orthorotation : MonoBehaviour
     public RotationStrategy Strategy;
     public float RotationStep = 1.0f;
     public float RotationTimeInterval = 1.0f;
+    public float RotationAngle = 90.0f;
 
     public UpdateState State { get; private set; }
 
@@ -53,21 +54,10 @@ public class Orthorotation : MonoBehaviour
     private void ResetTimer() => timer = default;
     private void UpdateTimer() => timer += Time.deltaTime;
 
-    private void TryChangeState()
-    {
-        switch (State) {
-            case UpdateState.Idle:
-                if (TryStartRotation()) {
-                    State = UpdateState.Rotating;
-                };
-                break;
-        }
-    }
-
     private bool TryStartRotation()
     {
         if (timer >= RotationTimeInterval) {
-            targetRotation = transform.rotation * Quaternion.Euler(0, 0, GetDirection() * 90);
+            targetRotation = transform.rotation * Quaternion.Euler(0, 0, GetDirection() * RotationAngle);
             return true;
         }
 
@@ -76,7 +66,7 @@ public class Orthorotation : MonoBehaviour
 
     private bool TryRotate()
     {
-        if (transform.rotation != targetRotation) {
+        if (Quaternion.Angle(transform.rotation, targetRotation) > float.Epsilon) {
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, RotationStep / 100);
             return true;
         }
