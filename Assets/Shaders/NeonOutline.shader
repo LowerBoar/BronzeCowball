@@ -6,6 +6,7 @@ Shader "BronzeCowball/NeonOutline"
 		_Outline("Outline Length", Range(0.0, 1.0)) = 0.2
 		_Color("Color", Color) = (0.8, 0.8, 0.8, 1.0)
 		_OutlineColor("Outline Color", Color) = (0.2, 0.2, 0.2, 1.0)
+        _MainTex ("Base (RGB)", 2D) = "white" {}
 	}
 
 		SubShader{
@@ -97,7 +98,7 @@ Shader "BronzeCowball/NeonOutline"
 				v2f o;
 
 				float4 vert = v.vertex;
-				vert.xyz += v.normal * _Outline;
+				vert.xy *= 1 + _Outline;
 
 				o.pos = UnityObjectToClipPos(vert);
 
