@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenuUIController : MonoBehaviour
 {
-	public AudioClip PlayButtonClickSound;
-
 	void Start()
     {
         GetComponentInChildren<Button>().onClick.AddListener(OnPlayButtonClick);
@@ -15,9 +13,7 @@ public class MainMenuUIController : MonoBehaviour
 
 	private void OnPlayButtonClick()
 	{
-		var audioSource = GetComponent<AudioSource>();	// TODO Move this to SoundManager
-		audioSource.clip = PlayButtonClickSound;
-		audioSource.Play();
+		FindObjectOfType<SoundManager>().PlaySound("PlayButtonClick");
 
 	    FindObjectOfType<GameManager>().BeginPlaying();
 	    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));
