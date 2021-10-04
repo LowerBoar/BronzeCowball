@@ -57,7 +57,8 @@ public class Orthorotation : MonoBehaviour
     private bool TryStartRotation()
     {
         if (timer >= RotationTimeInterval) {
-            targetRotation = transform.rotation * Quaternion.Euler(0, 0, GetDirection() * RotationAngle);
+	        FindObjectOfType<SoundManager>().PlaySound("CameraTurn", true);
+	        targetRotation = transform.rotation * Quaternion.Euler(0, 0, GetDirection() * RotationAngle);
             return true;
         }
 

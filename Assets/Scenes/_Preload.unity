@@ -134,6 +134,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: The
       objectReference: {fileID: 0}
+    - target: {fileID: 423885282714597432, guid: d0ccda5b9329dd64c9eb162ecc519dce, type: 3}
+      propertyPath: Sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 423885282714597432, guid: d0ccda5b9329dd64c9eb162ecc519dce, type: 3}
+      propertyPath: Sounds.Array.data[1].Clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 84e427d6b66ab4066b6a4dcd0ce819ee, type: 3}
+    - target: {fileID: 423885282714597432, guid: d0ccda5b9329dd64c9eb162ecc519dce, type: 3}
+      propertyPath: Sounds.Array.data[1].Name
+      value: CameraTurn
+      objectReference: {fileID: 0}
     - target: {fileID: 3628343221793523232, guid: d0ccda5b9329dd64c9eb162ecc519dce, type: 3}
       propertyPath: m_RootOrder
       value: 0

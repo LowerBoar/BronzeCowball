@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
@@ -25,14 +26,19 @@ public class SoundManager : MonoBehaviour
 	    }   
     }
 
-    public void PlaySound(string soundName)
+    public void PlaySound(string soundName, bool randomize = false)
     {
 	    if (Sounds.Any(s => s.Name == soundName)) {
 		    var sound = Sounds.Find(s => s.Name == soundName);
 		    var source = gameObject.AddComponent<AudioSource>();
 
 		    source.clip = sound.Clip;
-		    source.Play();
+
+		    if (randomize) {
+			    source.pitch = Random.Range(0.8f, 1.2f);
+		    }
+
+			source.Play();
 			soundSources.Add(source);
 	    }
     }
