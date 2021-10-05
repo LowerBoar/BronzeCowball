@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
 	public GameObject FloorCell;
 	public Transform cellHolder;
+	public Transform ReferenceFloor;
 
 	private int Partition = 10;
 
@@ -15,7 +16,7 @@ public class Spawner : MonoBehaviour
 
 	void Start()
 	{
-		sizeX = GameObject.Find("Border").transform.localScale.x;	// TODO Don't do this at home (and stop doing it in this project)
+		sizeX = ReferenceFloor.localScale.x;
 		var spawnPointSprite = GetComponentInChildren<SpriteRenderer>();
 
 		spawnPoint = spawnPointSprite.gameObject;
