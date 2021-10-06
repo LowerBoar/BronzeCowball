@@ -13,7 +13,9 @@ public class MainMenuUIController : MonoBehaviour
 
 	private void OnPlayButtonClick()
 	{
-		FindObjectOfType<SoundManager>().PlaySound("PlayButtonClick");
+		var soundManager = FindObjectOfType<SoundManager>();
+		soundManager.PlaySound("PlayButtonClick");
+		soundManager.PlayMusic("GameScreen");
 
 	    FindObjectOfType<GameManager>().BeginPlaying();
 	    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));

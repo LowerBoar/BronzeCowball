@@ -7,13 +7,16 @@ using Random = UnityEngine.Random;
 
 public class SoundManager : MonoBehaviour
 {
-	public List<Sound> Sounds; 
+	public List<Sound> Sounds;
+	public List<Sound> Music;
 
 	private List<AudioSource> soundSources;
+	private AudioSource musicSource;
 
 	void Start()
 	{
 		soundSources = new List<AudioSource>();
+		musicSource = gameObject.AddComponent<AudioSource>();
 	}
 
     void Update()
@@ -40,6 +43,15 @@ public class SoundManager : MonoBehaviour
 
 			source.Play();
 			soundSources.Add(source);
+	    }
+    }
+
+    public void PlayMusic(string musicName)
+    {
+	    if (Music.Any(m => m.Name == musicName)) {
+		    var music = Music.Find(m => m.Name == musicName);
+		    musicSource.clip = music.Clip;
+		    musicSource.Play();
 	    }
     }
 }
