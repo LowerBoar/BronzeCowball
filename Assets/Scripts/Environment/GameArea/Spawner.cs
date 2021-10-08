@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     {
 	    while (true) {
 		    yield return new WaitForSeconds(waitTime);
-		    waitTime = Mathf.Max(waitTime - 0.1f, 1.5f);
+		    waitTime = Mathf.Max(waitTime - 0.1f, 1f);
 		    Spawn();
 	    }
     }
