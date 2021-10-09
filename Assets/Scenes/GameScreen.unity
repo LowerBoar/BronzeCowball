@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameArea
       objectReference: {fileID: 0}
-    - target: {fileID: 2229114192102673186, guid: 696abd311bc7078409b4e417ccc141fd, type: 3}
-      propertyPath: m_TagString
-      value: GC
-      objectReference: {fileID: 0}
     - target: {fileID: 2855126827816227195, guid: 696abd311bc7078409b4e417ccc141fd, type: 3}
       propertyPath: Strategy
       value: 2

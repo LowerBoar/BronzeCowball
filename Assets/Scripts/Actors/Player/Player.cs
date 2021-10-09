@@ -21,19 +21,21 @@ public class Player : MonoBehaviour
     void Update()
     {
 	    movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-	    if (camera.WorldToViewportPoint(transform.position).y > 1.2)
-	    {
-			FindObjectOfType<GameManager>().StopPlaying();
-		    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.EndScreen));	// TODO Maybe this better lie in SceneManager?
-		}
-	}
+    }
 
     void FixedUpdate()
     {
 	    if (movementVector != Vector2.zero) {
 		    var rigidbody = GetComponent<Rigidbody2D>();
 		    rigidbody.velocity = (movementVector * Speed + new Vector2(0f, -Globals.Gravity)) * Time.fixedDeltaTime;
+	    }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+	    if (other.CompareTag("GC")) {
+		    FindObjectOfType<GameManager>().StopPlaying();
+			SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.EndScreen));    // TODO Maybe this better lie in SceneManager?
 	    }
     }
 }
