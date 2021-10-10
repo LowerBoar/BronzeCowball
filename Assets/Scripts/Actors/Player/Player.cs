@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
 	    if (other.CompareTag("GC")) {
 		    FindObjectOfType<GameManager>().StopPlaying();
-			SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.EndScreen));    // TODO Maybe this better lie in SceneManager?
+			FindObjectOfType<SceneLoader>().LoadScene(SceneLoader.Scenes.EndScreen);
 	    }
     }
 }

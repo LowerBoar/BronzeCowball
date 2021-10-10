@@ -2,14 +2,4 @@ public static class Globals
 {
 	public static float Gravity = 200f;
 	public static float ScoreGain = 1f;
-
-	public static int GetSceneIndex(Scenes scene) => (int) scene;
-
-	public enum Scenes
-	{
-		Preload = 0,
-		MainMenu = 1,
-		GameScreen = 2,
-		EndScreen = 3,
-	}
 }

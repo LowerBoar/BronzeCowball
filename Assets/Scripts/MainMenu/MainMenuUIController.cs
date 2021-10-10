@@ -18,6 +18,6 @@ public class MainMenuUIController : MonoBehaviour
 		soundManager.PlayMusic("GameScreen");
 
 	    FindObjectOfType<GameManager>().BeginPlaying();
-	    SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));
+	    FindObjectOfType<SceneLoader>().LoadScene(SceneLoader.Scenes.GameScreen);
     }
 }

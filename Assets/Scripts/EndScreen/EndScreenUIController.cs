@@ -19,6 +19,6 @@ public class EndScreenUIController : MonoBehaviour
 	private void OnReplayButtonClick()
 	{
 		FindObjectOfType<GameManager>().BeginPlaying();
-		SceneManager.LoadScene(Globals.GetSceneIndex(Globals.Scenes.GameScreen));
+		FindObjectOfType<SceneLoader>().LoadScene(SceneLoader.Scenes.GameScreen);
 	}
 }
