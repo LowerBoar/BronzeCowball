@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
 	    var point = Random.Range(2, Partition - 2);
 	    var cellSize = sizeX / Partition;
 
-	    var additionalOffset = 1.5f;   // TODO Additional offset should be based on player size
+	    var additionalOffset = 1.5f * FindObjectOfType<Player>().transform.localScale.x;
 
 	    var cell = Instantiate(FloorCell, cellHolder);
 	    cell.transform.parent = cellHolder;
