@@ -13,14 +13,14 @@ public class Spawner : MonoBehaviour
 	private GameObject spawnPoint;
 	private float sizeX;
 	private float cellSize;
-	private float holeSize;
+	private float halfHoleSize;
 	private float spawnDelay = 3f;
 
 	void Start()
 	{
 		sizeX = ReferenceFloor.localScale.x;
 		cellSize = sizeX / Partition;
-		holeSize = 1.5f * FindObjectOfType<Player>().transform.localScale.x * cellSize;
+		halfHoleSize = 1.5f * FindObjectOfType<Player>().transform.localScale.x * cellSize / 2;
 
 		var spawnPointSprite = GetComponentInChildren<SpriteRenderer>();
 
@@ -42,13 +42,28 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-	    var positionOffset = spawnPoint.transform.position;
-	    var point = Random.Range(2, Partition - 2);
+	    var holesAmount = Random.Range(1, 4);
 
-		CreateCell(cellSize * point - holeSize / 2, positionOffset);
-		positionOffset.x += cellSize * point + holeSize / 2;
-		
-		CreateCell(cellSize * (Partition - point) - holeSize / 2, positionOffset);
+	    var positionOffset = spawnPoint.transform.position;
+
+	    var point = Random.Range(1, Partition - 1);
+	    CreateCell(cellSize * point - halfHoleSize, positionOffset);
+	    positionOffset.x += cellSize * point + halfHoleSize;
+	    var lastPoint = point;
+
+	    for (var i = 0; i < holesAmount - 1; ++i) {
+		    if (lastPoint + 1 >= Partition - 1) {
+			    break;
+		    }
+
+		    point = Random.Range(lastPoint + 1, Partition - 1);
+		    var distance = point - lastPoint;
+		    CreateCell(cellSize * distance - halfHoleSize, positionOffset);
+		    positionOffset.x += cellSize * distance + halfHoleSize;
+		    lastPoint = point;
+	    }
+	    
+		CreateCell(cellSize * (Partition - lastPoint) - halfHoleSize, positionOffset);
     }
 
     private void CreateCell(float xSize, Vector3 positionOffset)
