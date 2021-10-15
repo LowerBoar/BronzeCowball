@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class Spawner : MonoBehaviour
 {
 	public GameObject FloorCell;
-	public Transform cellHolder;
+	public Transform CellHolder;
 	public Transform ReferenceFloor;
 
 	private int Partition = 10;
@@ -68,8 +68,8 @@ public class Spawner : MonoBehaviour
 
     private void CreateCell(float xSize, Vector3 positionOffset)
     {
-	    var cell = Instantiate(FloorCell, cellHolder);
-	    cell.transform.parent = cellHolder;
+	    var cell = Instantiate(FloorCell, CellHolder);
+	    cell.transform.parent = CellHolder;
 	    cell.transform.localScale = new Vector3(xSize, 1f);
 	    cell.transform.position = positionOffset + new Vector3(xSize / 2, 0);
     }
