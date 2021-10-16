@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloorCell: {fileID: 7381882450124640618, guid: 08a7fac5c88909f46a8ab1532bababa0, type: 3}
-  cellHolder: {fileID: 7543761320969994567}
+  CellHolder: {fileID: 7543761320969994567}
   ReferenceFloor: {fileID: 7904834536659923565}
 --- !u!1001 &674897795112020094
 PrefabInstance:
