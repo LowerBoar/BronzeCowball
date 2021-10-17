@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-	public float HorizontalSpeed = 200f;
-	public float VerticalSpeed = 400f;
+	public Vector2 StartingSpeed = new Vector2(200f, 800f);
+	public Vector2 Acceleration = new Vector2(200f, -800f);
+	public Vector2 SpeedLimit = new Vector2(800f, -400f);
 
 	private Vector2 Speed;
 	private Vector2 movementVector;
-	private Camera camera;
+	private Camera mainCamera;
 
 	void Start()
 	{
-		camera = FindObjectOfType<Camera>();
-		Speed = new Vector2(HorizontalSpeed, VerticalSpeed);
+		mainCamera = FindObjectOfType<Camera>();
+		Speed = StartingSpeed;
 	}
 
     void Update()
@@ -26,8 +27,12 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
 	    if (movementVector != Vector2.zero) {
-		    var rigidbody = GetComponent<Rigidbody2D>();
-		    rigidbody.velocity = (movementVector * Speed + new Vector2(0f, -Globals.Gravity)) * Time.fixedDeltaTime;
+		    Speed += Acceleration * new Vector2(Mathf.Abs(movementVector.x), Mathf.Abs(movementVector.y)) * Time.fixedDeltaTime;
+		    Speed = new Vector2(
+			    Mathf.Clamp(Speed.x, StartingSpeed.x, SpeedLimit.x),
+			    Mathf.Clamp(Speed.y, StartingSpeed.y, SpeedLimit.y)
+			);
+		    GetComponent<Rigidbody2D>().velocity = (movementVector * Speed + new Vector2(0f, -Globals.Gravity)) * Time.fixedDeltaTime;
 	    }
     }
 
